@@ -1,0 +1,135 @@
+/* news.css */
+.news-body {
+    background-color: #ffffff; /* Светлая газета */
+    color: #000000;
+    min-height: 100%;
+    font-family: 'Helvetica', Arial, sans-serif;
+    padding: 0;
+    line-height: 1.2;
+}
+
+/* Верхнее меню категорий (черная полоса) */
+.news-categories {
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-bottom: 4px solid var(--cp-red);
+}
+
+.news-categories a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 10px;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    border-right: 1px solid #333;
+}
+
+.news-categories a:hover {
+    background: var(--cp-red);
+}
+
+/* Шапка с логотипом */
+.news-header-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    align-items: center;
+    border-bottom: 15px solid #1a1a1a;
+}
+
+.nct-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 0.8;
+    letter-spacing: -2px;
+    position: relative;
+}
+
+.nct-logo span {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+.main-headline {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    border-left: 2px solid #000;
+    padding-left: 10px;
+}
+
+/* Сетка контента */
+.screamsheet-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .screamsheet-content { grid-template-columns: 1fr; }
+}
+
+/* Колонки текста */
+.column-left {
+    font-size: 13px;
+    text-align: justify;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.horror-scopes {
+    margin-top: 30px;
+    border-top: 2px solid #000;
+    padding-top: 10px;
+}
+
+.horror-scopes h3 {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.scope-item {
+    margin-bottom: 10px;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* Правая колонка в рамке */
+.column-right-box {
+    border: 1px solid #000;
+    border-left: 4px solid var(--cp-red);
+    padding: 20px;
+    position: relative;
+}
+
+/* Красный уголок как на скрине */
+.column-right-box::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 20px; height: 20px;
+    border-top: 4px solid var(--cp-red);
+    border-left: 4px solid var(--cp-red);
+}
+
+.column-right-box h2 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.news-image {
+    width: 100%;
+    margin-top: 20px;
+    filter: grayscale(1);
+    border: 1px solid #000;
+}

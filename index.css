@@ -1,0 +1,156 @@
+/* index.css */
+.net-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.net-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.site-card {
+    border: 1px solid var(--cp-gray);
+    padding: 25px;
+    text-decoration: none;
+    color: var(--cp-white);
+    transition: all 0.3s;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.5), transparent);
+    text-align: center;
+}
+
+.site-card:hover {
+    border-color: var(--cp-red);
+    background: rgba(255, 0, 60, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 0, 60, 0.2);
+}
+
+.site-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cp-red);
+    margin-bottom: 10px;
+}
+
+.site-card p {
+    font-size: 12px;
+    color: #888;
+}
+
+.status-footer {
+    margin-top: 40px;
+    font-size: 10px;
+    color: #333;
+    text-align: center;
+}
+
+/* Основной контейнер карточки */
+.glitch-card {
+    position: relative;
+    background: var(--cp-black);
+    border: 1px solid var(--cp-gray);
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+/* Глитч-эффект при наведении */
+.glitch-card:hover {
+    border-color: var(--cp-red);
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+    transform: scale(1.02);
+}
+
+/* Создаем слои для глитча */
+.glitch-card:hover::before,
+.glitch-card:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+/* Красный слой (смещен влево) */
+.glitch-card:hover::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--cp-red);
+    animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+    border: 1px solid var(--cp-red);
+}
+
+/* Голубой слой (смещен вправо) */
+.glitch-card:hover::after {
+    left: -2px;
+    text-shadow: 2px 0 var(--cp-blue);
+    animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+    border: 1px solid var(--cp-blue);
+}
+
+/* Глитч для самого текста заголовка */
+.glitch-card h3 {
+    position: relative;
+    color: var(--cp-red);
+    font-family: 'Orbitron', sans-serif;
+    z-index: 2;
+}
+
+.glitch-card:hover h3::before,
+.glitch-card:hover h3::after {
+    content: attr(data-text); /* Берет текст из HTML атрибута */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--cp-black);
+}
+
+.glitch-card:hover h3::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--cp-blue);
+    clip-path: inset(45% 0 10% 0); /* Полоска текста */
+    animation: glitch-anim-1 0.2s infinite linear;
+}
+
+.glitch-card:hover h3::after {
+    left: -2px;
+    text-shadow: 2px 0 var(--cp-red);
+    clip-path: inset(10% 0 85% 0); /* Другая полоска текста */
+    animation: glitch-anim-2 0.2s infinite linear;
+}
+
+/* Анимации нарезки слоев (Clip-path) */
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, -1px); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 1px); }
+    40% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 2px); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(1px, -2px); }
+    80% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 1px); }
+    100% { clip-path: inset(20% 0 30% 0); transform: translate(2px, -1px); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 80% 0); transform: translate(2px, 1px); }
+    25% { clip-path: inset(40% 0 20% 0); transform: translate(-2px, -1px); }
+    50% { clip-path: inset(70% 0 10% 0); transform: translate(1px, 2px); }
+    75% { clip-path: inset(30% 0 60% 0); transform: translate(-1px, -2px); }
+    100% { clip-path: inset(10% 0 80% 0); transform: translate(2px, 1px); }
+}
+
+/* Дополнительное дрожание всей карточки */
+.glitch-card:hover .glitch-content {
+    animation: shake 0.1s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(1px, 1px) rotate(0.1deg); }
+    50% { transform: translate(-1px, -1px) rotate(-0.1deg); }
+    75% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}

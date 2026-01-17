@@ -1,0 +1,101 @@
+/* global.css */
+:root {
+    --cp-red: #ff003c;
+    --cp-dark-red: #80001e;
+    --cp-black: #050505;
+    --cp-gray: #1a1a1a;
+    --cp-blue: #00f0ff;
+    --cp-white: #e0e0e0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; cursor: crosshair; }
+
+body {
+    background-color: #000;
+    color: var(--cp-white);
+    font-family: 'Roboto Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Скан-линии (монитор) */
+body::before {
+    content: " ";
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 100;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+}
+
+/* Окно браузера */
+.browser-window {
+    width: 100%;
+    max-width: 1100px;
+    height: 90vh;
+    background: var(--cp-black);
+    border: 2px solid var(--cp-red);
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Верхняя панель */
+.browser-header {
+    background: var(--cp-red);
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.controls { display: flex; gap: 6px; }
+.btn { width: 12px; height: 12px; border-radius: 50%; border: 1px solid #000; }
+.btn-back { background: none; border: none; font-weight: bold; margin-right: 10px; color: black; text-decoration: none; }
+
+.url-bar {
+    background: rgba(0,0,0,0.4);
+    flex: 1;
+    margin: 0 20px;
+    padding: 2px 10px;
+    font-size: 11px;
+    color: var(--cp-blue);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.viewport {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Глитч анимация */
+.glitch {
+    animation: glitch 3s infinite;
+    text-transform: uppercase;
+}
+
+@keyframes glitch {
+    0% { transform: skew(0deg); }
+    1% { transform: skew(20deg); text-shadow: 2px 0 var(--cp-blue); }
+    2% { transform: skew(-20deg); text-shadow: -2px 0 var(--cp-red); }
+    3% { transform: skew(0deg); }
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--cp-red); }
+
+@media (max-width: 600px) {
+    .browser-window { height: 98vh; }
+    .url-bar { display: none; }
+}

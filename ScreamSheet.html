@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screamsheet - Night City Info-Pulse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cp-red: #ff003c;
+            --cp-dark-red: #80001e;
+            --cp-blue: #00f0ff;
+            --cp-black: #050505;
+            --cp-gray: #1a1a1a;
+            --cp-white: #e0e0e0;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--cp-white);
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Эффект сканирующих линий */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .screamsheet {
+            width: 800px;
+            background-color: var(--cp-black);
+            border: 4px solid var(--cp-red);
+            box-shadow: 0 0 20px var(--cp-dark-red);
+            position: relative;
+            padding: 0;
+            z-index: 1;
+        }
+
+        header {
+            background-color: var(--cp-red);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--cp-dark-red);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            margin: 0;
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 3px 3px var(--cp-dark-red);
+        }
+
+        .main-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .breaking-news {
+            grid-column: 1 / -1;
+            border-bottom: 2px solid var(--cp-red);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        .breaking-news h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cp-red);
+            font-size: 32px;
+            margin: 0 0 15px 0;
+            line-height: 1;
+        }
+
+        .lead-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #111, #333);
+            border: 2px solid var(--cp-gray);
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cp-red);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .lead-image::after {
+            content: "LIVE_FEED: DOCKS_SECTOR_7";
+            position: absolute;
+            bottom: 5px; right: 10px;
+            font-size: 10px;
+            color: var(--cp-blue);
+        }
+
+        .article-text {
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .sidebar {
+            border-left: 1px solid var(--cp-gray);
+            padding-left: 20px;
+        }
+
+        .sidebar h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cp-blue);
+            font-size: 18px;
+            border-bottom: 1px solid var(--cp-blue);
+            margin-top: 0;
+        }
+
+        .news-item {
+            font-size: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #222;
+        }
+
+        .quote-box {
+            background-color: #111;
+            border-left: 4px solid var(--cp-red);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 13px;
+        }
+
+        .ad-banner {
+            background-color: var(--cp-white);
+            color: black;
+            padding: 15px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-top: 20px;
+            clip-path: polygon(0 20%, 5% 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
+        }
+
+        footer {
+            background-color: #111;
+            padding: 15px 30px;
+            font-size: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            border-top: 1px solid var(--cp-gray);
+        }
+
+        .red-glitch {
+            color: var(--cp-red);
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; text-shadow: 2px 0 var(--cp-blue); }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="screamsheet">
+        <header>
+            <div class="header-top">
+                <span>Direct Feed: Ziggurat-Net</span>
+                <span>Vol. 77 // 2045.01.17</span>
+            </div>
+            <h1>INFO-PULSE</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="breaking-news">
+                <h2>КОНЕЦ КРАСНОЙ УГРОЗЫ: ЛЕГИОН УНИЧТОЖЕН</h2>
+                <div class="lead-image">
+                    <span style="font-size: 40px;">[ NO IMAGE SIGNAL ]</span>
+                </div>
+                <div class="article-text">
+                    <p><strong>ЮЖНЫЙ НАЙТ-СИТИ.</strong> Вчерашняя ночь стала последней для «Легиона Красного Хрома». В ходе молниеносной операции банда <strong>«Железные прицелы»</strong> провела полную зачистку доков. Неонацистская группировка, терроризировавшая логистические узлы города, перестала существовать как организованная сила.</p>
+                    <p>Очевидцы сообщают о «хирургической точности» атак. Железные прицелы использовали подавление частот и тяжелое вооружение. К моменту прибытия патруля NCPD на месте остались лишь дымящиеся гильзы и 14 тел в красной форме. Легион пал, не успев сделать ни одного ответного выстрела в сторону профессионалов.</p>
+                </div>
+                
+                <div class="quote-box">
+                    "Легион кричал о чистоте крови. Теперь их кровь абсолютно чиста — её вымыл дождь в сточную канаву. Хром не спасет тебя, если ты не умеешь целиться."<br>
+                    <strong>— Фриц «Осечка», «Свинцовый Ренессанс»</strong>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h3>КОРОТКО</h3>
+                <div class="news-item">
+                    <strong>ДЕФИЦИТ КИББЛА:</strong> Continental Brands сообщает о заражении цеха в Хейвуде. Цены на еду вырастут на 15%.
+                </div>
+                <div class="news-item">
+                    <strong>МОДА 2045:</strong> Sanroo представила бронежилеты "Pity Puppy". Защита еще никогда не была такой милой.
+                </div>
+                <div class="news-item">
+                    <strong>РОЗЫСК:</strong> Хорнет ищет информацию о Сайласе Вейне. Вознаграждение: 500eb. Анонимность гарантирована.
+                </div>
+                
+                <div class="ad-banner">
+                    CONSTITUTION ARMS<br>
+                    <span style="font-size: 10px;">10 ЗАРЯДОВ — 10 АРГУМЕНТОВ</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <span>&copy; 2045 ZIGGURAT MEDIA GROUP. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</span>
+            <span class="red-glitch">CONNECTED // NO LOGS RECORDED</span>
+        </footer>
+    </div>
+
+</body>
+</html>
